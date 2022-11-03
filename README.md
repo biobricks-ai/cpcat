@@ -1,35 +1,4 @@
-# How to build bricks
+# Chemical and Product Categories (CPCAT)
+CPCat (Chemical and Product Categories) is a database containing information mapping more than 43,000 chemicals to a set of terms categorizing their usage or function. We have compiled a comprehensive list of chemicals with associated categories of chemical and product use by compiling publically available sources. Sources include, but are not limited to: the Substances in Preparation in Nordic Countries (SPIN) database, information provided by companies, trade associations, and regulatory agencies such as the U.S. Environmental Protection Agency (EPA) and Food and Drug Administration (FDA), the DrugBank database of pharmaceutical products, and information mined from the Aggregated Computational Toxicology Resource (ACToR) database developed by the U.S. EPA. Unique use category taxonomies from each source are mapped onto a single common set of ~800 terms.
 
-1. Create a brick named `{newbrick}` from this template
-```
-gh repo create biobricks-ai/{newbrick} -p biobricks-ai/brick-template --public
-gh repo clone biobricks-ai/{newbrick}
-cd newbrick
-```
-
-2. Edit stages according to your needs:
-    Recommended scripts:
-    - ``01_download.sh``
-    - ``02_unzip.sh``
-    - ``03_build.sh`` calling a function to process individual files like ``csv2parquet.R`` or ``csv2parquet.py``
-
-3. Replace stages in dvc.yaml with your new stages
-    
-4. Build your brick
-```
-dvc repro # runs new stages
-```
-
-5. Push the data to biobricks.ai
-```
-dvc push -r s3.biobricks.ai 
-```
-
-6. Commit the brick
-```
-git add -A && git commit -m "some message"
-git push
-```
-
-7. Monitor the bricktools github action
-
+The user can search for chemicals by chemical name, Chemical Abstracts Registry Number (CASRN), or by CPCat terms (i.e. category names) associated with chemicals. 
