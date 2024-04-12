@@ -1,56 +1,47 @@
+---
 schema: '2.0'
 stages:
-  1-stage:
-    cmd: Rscript stages/01-stage.R
-    deps:
-    - path: stages/01-stage.R
-      md5: c468dc14527e00c339f146e1dba2bd3b
-      size: 118
-    outs:
-    - path: data/mtcars.parquet
-      md5: 77cf29accf9535522fad7db1486eff9a
-      size: 6243
-  download:
-    cmd: stages/01_download.sh
-    deps:
-    - path: stages/01_download.sh
-      md5: 126d8cbee57a38e475ddf0d9f94172ab
-      size: 543
-    outs:
-    - path: download
-      md5: 6cb077240a83b30e07bc8bcb22edcccc.dir
-      size: 238862642
-      nfiles: 1
-  unzip:
-    cmd: stages/02_unzip.sh
-    deps:
-    - path: download
-      md5: 6cb077240a83b30e07bc8bcb22edcccc.dir
-      size: 238862642
-      nfiles: 1
-    - path: stages/02_unzip.sh
-      md5: 86c4c2186b9553adc3d7bdce81081e6c
-      size: 602
-    outs:
-    - path: raw
-      md5: 38a2af1e7bc47fab41385fd7f1d1e599.dir
-      size: 590116623
-      nfiles: 42
   build:
     cmd: stages/03_build.sh
     deps:
-    - path: raw
-      md5: 38a2af1e7bc47fab41385fd7f1d1e599.dir
-      size: 590116623
+    - md5: 38a2af1e7bc47fab41385fd7f1d1e599.dir
       nfiles: 42
-    - path: stages/03_build.sh
-      md5: ad705d3aff32f182707d7aa88a87fd18
+      path: raw
+      size: 590116623
+    - md5: ad705d3aff32f182707d7aa88a87fd18
+      path: stages/03_build.sh
       size: 410
-    - path: stages/csv2parquet.py
-      md5: 9da058902b8002e43d6be8fed1d67a6f
+    - md5: 9da058902b8002e43d6be8fed1d67a6f
+      path: stages/csv2parquet.py
       size: 1071
     outs:
-    - path: brick
-      md5: f312db08fa5471b23ed2cd8f6c1d5b30.dir
-      size: 24351122
+    - md5: f312db08fa5471b23ed2cd8f6c1d5b30.dir
       nfiles: 3
+      path: brick
+      size: 24351122
+  download:
+    cmd: stages/01_download.sh
+    deps:
+    - md5: 126d8cbee57a38e475ddf0d9f94172ab
+      path: stages/01_download.sh
+      size: 543
+    outs:
+    - md5: 6cb077240a83b30e07bc8bcb22edcccc.dir
+      nfiles: 1
+      path: download
+      size: 238862642
+  unzip:
+    cmd: stages/02_unzip.sh
+    deps:
+    - md5: 6cb077240a83b30e07bc8bcb22edcccc.dir
+      nfiles: 1
+      path: download
+      size: 238862642
+    - md5: 86c4c2186b9553adc3d7bdce81081e6c
+      path: stages/02_unzip.sh
+      size: 602
+    outs:
+    - md5: 38a2af1e7bc47fab41385fd7f1d1e599.dir
+      nfiles: 42
+      path: raw
+      size: 590116623
