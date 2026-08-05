@@ -1,0 +1,41 @@
+{
+  "@context": "../../context/source.context.jsonld",
+  "@type": "dcat:Dataset",
+  "@id": "https://biobricks.ai/bricks/cpcat",
+  "dcterms:title": "Chemical and Product Categories (CPCat)",
+  "dcterms:description": "CPCat maps more than 43,000 chemicals to a set of ~800 harmonized terms categorizing their use or function. It is compiled and released by the U.S. EPA as part of the CompTox Chemicals Dashboard / DSSTox project. The brick downloads CPCat.zip directly from EPA's public gaftp server (gaftp.epa.gov/COMPTOX/Sustainable_Chemistry_Data/Chemistry_Dashboard/CPCat.zip). Per the CompTox Dashboard, the aggregated chemistry content is distributed as public-domain U.S. Government data.",
+  "dcterms:license": "https://www.usa.gov/government-works",
+  "biobricks:licenseName": "U.S. Government Work (public domain)",
+  "biobricks:licenseClass": "open",
+  "biobricks:merckCommercialUse": "permitted",
+  "biobricks:licenseEvidence": [
+    {
+      "source": "stages/01_download.sh",
+      "quote": "ftplink=\"https://gaftp.epa.gov/COMPTOX/Sustainable_Chemistry_Data/Chemistry_Dashboard/CPCat.zip\"",
+      "confidence": "high"
+    },
+    {
+      "source": "https://catalog.data.gov/dataset/the-comptox-chemistry-dashboard-a-community-data-resource-for-environmental-chemistry",
+      "quote": "the contents of the chemistry database ... are available as public domain data for download",
+      "confidence": "medium"
+    },
+    {
+      "source": "README.md",
+      "quote": "Sources include, but are not limited to: the Substances in Preparation in Nordic Countries (SPIN) database, information provided by companies, trade associations, and regulatory agencies such as the U.S. Environmental Protection Agency (EPA) and Food and Drug Administration (FDA), the DrugBank database of pharmaceutical products, and information mined from the Aggregated Computational Toxicology Resource (ACToR) database",
+      "confidence": "low"
+    }
+  ],
+  "dcterms:publisher": "U.S. Environmental Protection Agency (CompTox Chemicals Dashboard / DSSTox)",
+  "biobricks:reviewed": false,
+  "biobricks:reviewNotes": "Determined by BioBricks licensing-annotation agent (Claude Opus). The brick pulls CPCat.zip from EPA's public gaftp server; the EPA CompTox Chemicals Dashboard chemistry content is distributed as public-domain U.S. Government data (data.gov catalog record), hence class=open / commercial=permitted. HUMAN CHECK REQUIRED: per the README, CPCat is a compilation that ingests third-party sources including the DrugBank database (which carries its own more-restrictive license for its native distribution) and the Nordic SPIN database. EPA releases the compiled CPCat product publicly as government data, but a reviewer should confirm no embedded DrugBank/SPIN content triggers separate upstream obligations. Confidence medium.",
+  "prov:wasDerivedFrom": [
+    {
+      "@type": "dcat:Dataset",
+      "@id": "https://comptox.epa.gov/dashboard",
+      "dcterms:title": "EPA CompTox Chemicals Dashboard - CPCat (Chemical and Product Categories)",
+      "dcterms:publisher": "U.S. Environmental Protection Agency",
+      "dcterms:license": "https://www.usa.gov/government-works",
+      "dcat:downloadURL": "https://gaftp.epa.gov/COMPTOX/Sustainable_Chemistry_Data/Chemistry_Dashboard/CPCat.zip"
+    }
+  ]
+}
